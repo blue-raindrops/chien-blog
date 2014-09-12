@@ -1,1 +1,7 @@
 <h1>All posts</h1>
+<hr />
+<% @posts.each do |p| %>
+  <h2><%= p.title %></h2>
+  <p><%= p.body %></p>
+  <hr />
+<% end %>
