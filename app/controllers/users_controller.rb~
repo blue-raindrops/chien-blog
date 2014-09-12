@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 	def index
-		render json: User.all.map {&:name}
+		render json: User.all.map { |u| u.name }
 	end
 
 	def create
@@ -10,5 +10,9 @@ class UsersController < ApplicationController
 
 	def user_params
 		params.require(:user).permit(:fname, :lname, :email)
+	end
+
+	def show
+		@user = User.find(params[:id])
 	end
 end

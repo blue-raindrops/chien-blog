@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
 	def name
-		"#{self.fname} #{self.lname}"
+		"#{ self.first_name } #{ self.last_name }"
 	end
 end
