@@ -1,6 +1,11 @@
 class UsersController < ApplicationController
 	def index
-		render json: User.all.map { |u| u.name }
+		@user_names = User.all.map(&:name)
+
+		respond_to do |format|
+			format.html
+			format.json {render json: {userNames: @user_names}}
+		end
 	end
 
 	def create
@@ -14,5 +19,9 @@ class UsersController < ApplicationController
 
 	def show
 		@user = User.find(params[:id])
+		respond_to do |format|
+			format.html
+			format.json {render json: @user}
+		end
 	end
 end
