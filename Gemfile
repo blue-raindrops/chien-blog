@@ -1,5 +1,9 @@
 source 'https://rubygems.org'
 
+# Gemfile
+gem 'annotate'
+gem 'bcrypt'
+
 gem 'rails_12factor'
 gem 'foundation-rails'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'

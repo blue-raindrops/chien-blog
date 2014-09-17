@@ -11,6 +11,9 @@
         <label>Email
           <%= u.text_field :email, placeholder: 'Email address' %>
         </label>
+        <label>Password
+          <%= u.password_field :password, placeholder: 'Password' %>
+        </label>
         <%= u.submit 'Save user', class: 'button' %>
       <% end %>
   </div>
