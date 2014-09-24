@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+	default_scope -> {order('created_at DESC')}
 	def name
 		"#{ self.first_name } #{ self.last_name }"
 	end

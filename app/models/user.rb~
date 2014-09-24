@@ -3,5 +3,10 @@ class User < ActiveRecord::Base
 		"#{ self.first_name } #{ self.last_name }"
 	end
 
+	def as_json(options)
+		super(
+			except: [:password_digest, :first_name, :last_name]).merge({name: self.name})
+	end
+
 	has_secure_password
 end
