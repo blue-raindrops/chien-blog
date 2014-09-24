@@ -4,6 +4,14 @@ source 'https://rubygems.org'
 gem 'annotate'
 gem 'bcrypt'
 
+group :test do
+	gem 'rspec-rails'
+	gem 'rspec-mocks'
+	gem 'rspec-its'
+	gem 'capybara'
+	gem 'factory_girl_rails'
+end
+
 gem 'rails_12factor'
 gem 'foundation-rails'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'

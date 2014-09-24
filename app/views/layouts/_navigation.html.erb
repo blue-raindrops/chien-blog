@@ -1,0 +1,34 @@
+
+
+<div class="contain-to-grid">
+  <nav class="top-bar" data-topbar role="navigation">
+    <ul class="title-area">
+      <li class="name">
+        <h1><%= link_to "Chien Blog", root_url %></h1>
+      </li>
+      <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+    </ul>
+
+    <section class="top-bar-section">
+      <!-- Right Nav Section -->
+      <ul class="right">
+        <li class="has-dropdown">
+          <a href="#">Posts</a>
+          <ul class="dropdown">
+            <li><%= link_to "All Posts", posts_path %></li>
+            <li><%= link_to "New Post", new_post_path %></li>
+          </ul>
+        </li>
+
+        <li class="has-dropdown">
+          <a href="#">Users</a>
+          <ul class="dropdown">
+            <li><%= link_to "All Users", users_path %></li>
+            <li><%= link_to "New User", new_user_path %></li>
+          </ul>
+        </li>
+        <li><%= link_to "Login", new_session_path %></li>
+      </ul>
+    </section>  
+  </nav>
+</div>
