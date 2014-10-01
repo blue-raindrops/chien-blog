@@ -1,7 +1,11 @@
 <div class="row">
   <div class="large-12 small-12 columns">
   <h1>Create a new post</h1>
-
-  <%= render 'posts/form' %>
+    <% if !current_user.nil? %>
+      <%= render 'posts/form' %>
+    <% else %>
+      <p> You must create an account and log in to access this feature. </p>
+      <%= link_to 'Log in', new_session_path %>
+    <% end %>
   </div>
 </div>

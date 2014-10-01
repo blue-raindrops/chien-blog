@@ -5,6 +5,26 @@
     <p><%= @post.body %></p>
 
     <%= link_to "Back", posts_path %>
-    <%= link_to "Edit", edit_post_path %>
+    <% if !current_user.nil? %>
+      <%= link_to "Edit", edit_post_path %>
+    <% end %>
   </div> <!-- 12 -->
 </div> <!-- row -->
+
+<div class="row">
+	<div class="large-12 columns">
+		<h4>Comments</h4>
+		<% @post.comments.each do |comment| %>
+  		<h6><%= comment.user.name %></h6>
+  		<p><%= comment.body %></p>
+		<% end %>
+	</div>
+</div>
+<div class="row">
+	<div class="large-12 columns">
+    <% if !current_user.nil? %>
+  		<h5>New Comment</h5>
+  		<%= render 'comments/form' %>
+    <% end %>
+	</div>
+</div>
