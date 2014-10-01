@@ -36,7 +36,7 @@ class UsersController < ApplicationController
 	def update
 		@user = User.find(params[:id])
 		respond_to do |format|
-			if @user.update(post_params)
+			if @user.update(user_params)
 				format.html {redirect_to @user, notice: 'User was successfully updated.'}
 				format.json {head :no_content}
 			else
