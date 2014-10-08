@@ -1,6 +1,6 @@
 <div class="row">
   <div class="large-12 small-12 columns">
-      <%= form_for User.new do |u| %>
+      <%= form_for @user do |u| %>
         <label>First name
           <%= u.text_field :first_name, placeholder: "First name" %>
         </label>

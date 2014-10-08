@@ -42,4 +42,10 @@ class PostsController < ApplicationController
 			end
 		end
 	end
+
+	def append_feed
+		posts = Post.where("id = ? AND created_at < ?", current_user.id, 
+			params[:time])[params[:current_length], 20]
+		render json: (posts.nil? ? {} : posts)
+	end
 end
