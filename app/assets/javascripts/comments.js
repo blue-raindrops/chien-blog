@@ -17,7 +17,7 @@ var Comment = React.createClass({
       children: [
         React.DOM.p({
           className: 'CommentAuthor',
-          children: this.props.comment.user_name + ' | ' + this.props.comment.created_at
+          children: 'User: ' + this.props.comment.user_id + ' | ' + this.props.comment.created_at
         }),
         React.DOM.p({
           className: 'CommentBody',

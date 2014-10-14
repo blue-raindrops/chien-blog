@@ -3,9 +3,13 @@ class PostsController < ApplicationController
 		@posts = Post.all
 	end
 
+  include SessionsHelper
 	def show
 		@post = Post.includes([:comments => :user]).find(params[:id])
 		@comment = Comment.new
+    curr_user = current_user
+    @user_name = curr_user.name
+    @post_id = @post.id
 	end
 
 	def new

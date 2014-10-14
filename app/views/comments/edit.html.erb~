@@ -1,10 +1,8 @@
 <div class="row">
-<div class="large-12 columns">
 <h1>Editing comment</h1>
 
 <%= render 'form' %>
 
 <%= link_to 'Show', @comment %> |
 <%= link_to 'Back', comments_path %>
-</div>
 </div>
