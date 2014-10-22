@@ -62,4 +62,11 @@ class PostsController < ApplicationController
 		@posts = Post.where("created_at < ?", params[:time].to_time).limit(20).offset(params[:current_length].to_i)
 		render partial: 'posts/index'
 	end
+
+	def comments
+		@comments = Comment.where(post_id: params[:id])
+		respond_to do |format|
+			format.json { render json: @comments.to_a }
+		end
+	end
 end

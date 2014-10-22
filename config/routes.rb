@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   get '/append_feed' => 'posts#append_feed'
   get '/append_index' => 'posts#append_index'
   get '/append_comments'  => 'posts#append_comments'
+  get '/posts/:id/comments' => 'posts#comments'
 
 match '/append_comments', to: 'posts#append_comments', via: 'get'
 match '/append_feed', to: 'posts#append_feed', via:'get'

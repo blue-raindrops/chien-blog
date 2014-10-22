@@ -108,6 +108,10 @@ var CommentList = React.createClass({
   }
 });
 
-$.get('/comments.json', function(resp) {
-  React.renderComponent(CommentList({ comments: resp }), document.getElementById('comments'));
-});
+postIDOnPage = document.getElementById('postID')
+if (postIDOnPage)
+  postID = postIDOnPage.innerHTML
+  routeString = '/posts/' + postID + '/comments.json'
+  $.get(routeString, function(resp) {
+    React.renderComponent(CommentList({ comments: resp }), document.getElementById('comments'));
+  });
