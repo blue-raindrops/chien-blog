@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
 	def index
-		@posts = Post.all
+		#@posts = Post.all
 	end
 
   include SessionsHelper
@@ -17,7 +17,8 @@ class PostsController < ApplicationController
 	end
 
 	def create
-		@post = Post.create(post_params)
+		x = post_params.update({user_id: current_user.id})
+		@post = Post.create(x)
 		redirect_to @post
 
 	end
@@ -48,8 +49,17 @@ class PostsController < ApplicationController
 	end
 
 	def append_feed
-		posts = Post.where("id = ? AND created_at < ?", current_user.id, 
-			params[:time])[params[:current_length], 20]
-		render json: (posts.nil? ? {} : posts)
+		@posts = Post.where("id = ? AND created_at < ?", params[:user_id], params[:time].to_time).limit(20).offset(params[:current_length].to_i)
+		render partial: 'posts/index'
+	end
+
+	def append_comments
+			comments = Comment.where("post_id = ? AND created_at < ?", params[:post_id], params[:time])[params[:current_length],20]
+			render json: (comments.nil? ? [] : comments)
+	end
+
+	def append_index
+		@posts = Post.where("created_at < ?", params[:time].to_time).limit(20).offset(params[:current_length].to_i)
+		render partial: 'posts/index'
 	end
 end

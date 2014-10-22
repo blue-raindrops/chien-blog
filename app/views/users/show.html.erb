@@ -3,7 +3,12 @@
     <%= gravatar_for @user %>
     <h2><%= @user.name %></h2>
     <p>Email: <%= @user.email %></p>
+    <div id="posts_div"></div>
     <%= link_to "Back", users_path %>
-    <%= link_to "Edit", edit_user_path %>
+    
+    <% if current_user.id == @user.id %>
+      <%= link_to "Edit", edit_user_path %>
+      
+    <% end %>
   </div>
 </div>

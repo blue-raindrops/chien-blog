@@ -1,23 +1,27 @@
 var Comment = React.createClass({
   getInitialState: function() {
-    return { likeCount: this.props.comment.likeCount }
+    return { likeCount: this.props.comment.like_count }
   },
   like: function() {
-    var newLikeCount = self.state.likeCount + 1;
+    var newLikeCount = this.state.likeCount + 1;
     this.setState({ likeCount: newLikeCount });
-    var commentURL = '/comments/' + this.props.comment.id;
-    $.post(commentURL, {
-      comment: {
+    comment = { 
+      comment: { 
         likeCount: newLikeCount
-      }
-    });
+      },
+      authenticity_token: $("meta[name='csrf-token']").attr('content')
+    };
+    var r = new XMLHttpRequest();
+    r.open("PATCH", ('/comments/' + this.props.comment.id), true);
+    r.setRequestHeader("Content-type", "application/json; charset=utf-8");
+    r.send(JSON.stringify((comment)));
   },
   render: function() {
     return React.DOM.div({
       children: [
         React.DOM.p({
           className: 'CommentAuthor',
-          children: 'User: ' + this.props.comment.user_id + ' | ' + this.props.comment.created_at
+          children: this.props.comment.user_name + ' | ' + this.props.comment.created_at
         }),
         React.DOM.p({
           className: 'CommentBody',
@@ -27,7 +31,7 @@ var Comment = React.createClass({
           className: 'CommentLike',
           children: [
             React.DOM.span({
-              children: 'Like',
+              children: 'Like ',
               onClick: this.like
             }),
             React.DOM.span({

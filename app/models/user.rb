@@ -9,6 +9,7 @@ class User < ActiveRecord::Base
 			except: [:password_digest, :first_name, :last_name]).merge({name: self.name})
 	end
 
+	has_many :posts, dependent: :destroy
   has_many :comments, dependent: :destroy
 	has_secure_password
 end

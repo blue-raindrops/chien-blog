@@ -11,25 +11,21 @@
   </div><!--12-->
 </div><!--row-->
 
-<br/>
-
 <div class="row">
   <div class="large-12 columns">
     <h5>New Comment</h5>
     <% if !current_user.nil? %>
-        <div id='userName'><b>Commenting as: </b><%= @user_name %></div>
-        <div id='postID'><b>This Post: #</b><%= @post_id %></div>
       <%= render 'comments/form' %>
     <% else %>
       <p>You must create an account and log in to access this feature.</p>
       <%= link_to 'Log in', new_session_path %>
     <% end %>
-  </div>
-</div>
 
-<div class="row">
-  <div class="large-12 columns">
-  <div id='comments'></div>
-  <script src="http://fb.me/react-0.11.2.js"></script>
+
+
+<div id='comments'></div>
+<div id='userName'><%= @user_name %></div>
+<div id='postID'><%= @post_id %></div>
+<script src="http://fb.me/react-0.11.2.js"></script>
   </div>
 </div>

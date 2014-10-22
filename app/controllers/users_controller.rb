@@ -5,15 +5,13 @@ class UsersController < ApplicationController
 
 	def index
 		@user_names = User.all.map(&:name)
-
-		respond_to do |format|
-			format.html
-			format.json {render json: {userNames: @user_names}}
-		end
 	end
 
 	def create
 		@user = User.create(user_params)
+		s = Session.new(user_id: @user.id)
+    s.save_with_session_code
+    cookies.permanent[:session_code] = s.session_code
 		redirect_to @user
 	end
 
@@ -23,10 +21,6 @@ class UsersController < ApplicationController
 
 	def show
 		@user = User.find(params[:id])
-		respond_to do |format|
-			format.html
-			format.json {render json: @user}
-		end
 	end
 
 	def edit 
@@ -45,5 +39,9 @@ class UsersController < ApplicationController
 			end
 		end
 	end
-				
+
+	def append_feed
+		render json: Post.where("user_id = ? AND created_at < ?", current_user.id, params[:time])[params[:current_length], 20]
+		render json: (posts.nil? ? [] : posts)
+	end			
 end
