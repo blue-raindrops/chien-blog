@@ -13,9 +13,9 @@
 
 <div class="row">
   <div class="large-12 columns">
-    <h5>New Comment</h5>
+    <h5>Comments</h5>
     <% if !current_user.nil? %>
-      <%= render 'comments/form' %>
+      
     <% else %>
       <p>You must create an account and log in to access this feature.</p>
       <%= link_to 'Log in', new_session_path %>

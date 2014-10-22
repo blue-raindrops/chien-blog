@@ -14,8 +14,7 @@
   <body>
     <%= render 'layouts/navigation' %>
     <%= yield %>
-<script src="http://fb.me/react-0.11.2.js"></script>
     <%= javascript_include_tag "application" %>
-    
+    <script src="http://fb.me/react-0.11.2.js"></script>
   </body>
 </html>
